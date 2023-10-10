@@ -1,0 +1,322 @@
+CREATE TABLE `tbl_customers` (
+  `CustomerID` int(11) NOT NULL,
+  `FirstName` varchar(50) DEFAULT NULL,
+  `LastName` varchar(50) DEFAULT NULL,
+  `Email` varchar(99) DEFAULT NULL,
+  `Phone` varchar(50) DEFAULT NULL,
+  `BirthDate` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_customers`
+--
+
+INSERT INTO `tbl_customers` (`CustomerID`, `FirstName`, `LastName`, `Email`, `Phone`, `BirthDate`) VALUES
+(1, 'Alice', 'Wilson', 'alicewilson@email.com', '-4135', NULL),
+(2, 'Bob', 'Brown', 'bobbrown@email.com', '-6975', NULL),
+(3, 'Eva', 'Clark', 'evaclark@email.com', '-5357', NULL),
+(4, 'James', 'Smith', 'jamessmith@email.com', '-5753', NULL),
+(5, 'Linda', 'Harris', 'lindaharris@email.com', '-6579', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_detailedreservations`
+--
+
+CREATE TABLE `tbl_detailedreservations` (
+  `ReservationID` int(11) NOT NULL,
+  `CustomerID` int(11) DEFAULT NULL,
+  `ReservationDate` date DEFAULT NULL,
+  `PartySize` int(11) DEFAULT NULL,
+  `SpecialRequests` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_detailedreservations`
+--
+
+INSERT INTO `tbl_detailedreservations` (`ReservationID`, `CustomerID`, `ReservationDate`, `PartySize`, `SpecialRequests`) VALUES
+(1, 1, '2023-09-20', 4, NULL),
+(2, 3, '2023-09-22', 6, NULL),
+(3, 2, '2023-09-23', 2, NULL),
+(4, 4, '2023-09-25', 8, NULL),
+(5, 5, '2023-09-26', 3, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_employees`
+--
+
+CREATE TABLE `tbl_employees` (
+  `EmployeeID` int(11) NOT NULL,
+  `FirstName` varchar(50) DEFAULT NULL,
+  `LastName` varchar(50) DEFAULT NULL,
+  `Position` varchar(50) DEFAULT NULL,
+  `Email` varchar(99) DEFAULT NULL,
+  `Phone` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_employees`
+--
+
+INSERT INTO `tbl_employees` (`EmployeeID`, `FirstName`, `LastName`, `Position`, `Email`, `Phone`) VALUES
+(1, 'John', 'Doe', 'Chef', 'johndoe@email.com', '-8223'),
+(2, 'Jane', 'Smith', 'Waiter', 'janesmith@email.com', '-2877'),
+(3, 'Micheal', 'Johnson', 'Bartender', 'michealjohnson@email.com', '-5555'),
+(4, 'Emily', 'Davis', 'Hostess', 'emilydavis@email.com', '-1111'),
+(5, 'David', 'Lee', 'Busboy', 'davidlee@email.com', '-2222');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_feedback`
+--
+
+CREATE TABLE `tbl_feedback` (
+  `FeedbackID` int(11) NOT NULL,
+  `CustomerID` int(11) DEFAULT NULL,
+  `Rating` int(11) DEFAULT NULL,
+  `Comment` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_feedback`
+--
+
+INSERT INTO `tbl_feedback` (`FeedbackID`, `CustomerID`, `Rating`, `Comment`) VALUES
+(1, 1, 4, 'Great food and service!'),
+(2, 3, 5, 'Absolutely delicious! Will come again.'),
+(3, 2, 3, 'Food was good, but service was slow.'),
+(4, 5, 4, 'Nice atmosphere, and the dessert was amazing.'),
+(5, 4, 2, 'Disappointed with the portion size.');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_menuitems`
+--
+
+CREATE TABLE `tbl_menuitems` (
+  `ItemID` int(11) NOT NULL,
+  `ItemName` varchar(50) DEFAULT NULL,
+  `Description` varchar(255) DEFAULT NULL,
+  `Price` float DEFAULT NULL,
+  `IsVegetarian` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_menuitems`
+--
+
+INSERT INTO `tbl_menuitems` (`ItemID`, `ItemName`, `Description`, `Price`, `IsVegetarian`) VALUES
+(1, 'Spaghetti Carbonara', 'Creamy pasta with bacon and eggs', 12.99, NULL),
+(2, 'Chicken Parmesan', 'Breaded chicken with marinara and cheese', 14.99, NULL),
+(3, 'Margherita Pizza', 'Classic pizza with tomatoes and basil', 11.99, NULL),
+(4, 'Caesar Salad', 'Romaine lettuce with croutons and Caesar dressing', 8.99, NULL),
+(5, 'Chocolate Brownie Sundae', 'Warm brownie with ice cream and chocolate sauce', 6.99, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_orderhistory`
+--
+
+CREATE TABLE `tbl_orderhistory` (
+  `OrderID` int(11) NOT NULL,
+  `CustomerID` int(11) DEFAULT NULL,
+  `OrderDate` datetime DEFAULT NULL,
+  `TotalAmount` decimal(10,2) DEFAULT NULL,
+  `Status` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_orderhistory`
+--
+
+INSERT INTO `tbl_orderhistory` (`OrderID`, `CustomerID`, `OrderDate`, `TotalAmount`, `Status`) VALUES
+(1, 1, '2023-09-20 12:30:00', NULL, NULL),
+(2, 2, '2023-09-20 19:15:00', NULL, NULL),
+(3, 3, '2023-09-21 13:45:00', NULL, NULL),
+(4, 4, '2023-09-22 20:00:00', NULL, NULL),
+(5, 5, '2023-09-23 18:30:00', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_orderitems`
+--
+
+CREATE TABLE `tbl_orderitems` (
+  `OrderItemID` int(11) NOT NULL,
+  `OrderID` int(11) DEFAULT NULL,
+  `ItemID` int(11) DEFAULT NULL,
+  `Quantity` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_orderitems`
+--
+
+INSERT INTO `tbl_orderitems` (`OrderItemID`, `OrderID`, `ItemID`, `Quantity`) VALUES
+(1, 1, 1, 2),
+(2, 1, 3, 1),
+(3, 2, 2, 2),
+(4, 3, 4, 3),
+(5, 4, 5, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_orders`
+--
+
+CREATE TABLE `tbl_orders` (
+  `OrderID` int(11) NOT NULL,
+  `CustomerID` int(11) DEFAULT NULL,
+  `OrderDate` datetime DEFAULT NULL,
+  `DeliveryAddress` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_orders`
+--
+
+INSERT INTO `tbl_orders` (`OrderID`, `CustomerID`, `OrderDate`, `DeliveryAddress`) VALUES
+(1, 1, '2023-09-20 12:30:00', NULL),
+(2, 2, '2023-09-20 19:15:00', NULL),
+(3, 3, '2023-09-21 13:45:00', NULL),
+(4, 4, '2023-09-22 20:00:00', NULL),
+(5, 5, '2023-09-23 18:30:00', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_paymenttransactions`
+--
+
+CREATE TABLE `tbl_paymenttransactions` (
+  `TransactionID` int(11) NOT NULL,
+  `OrderID` int(11) DEFAULT NULL,
+  `PaymentDate` datetime DEFAULT NULL,
+  `PaymentAmount` float DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_paymenttransactions`
+--
+
+INSERT INTO `tbl_paymenttransactions` (`TransactionID`, `OrderID`, `PaymentDate`, `PaymentAmount`) VALUES
+(1, 1, '2023-09-20 12:45:00', 32.98),
+(2, 2, '2023-09-20 19:30:00', 29.98),
+(3, 3, '2023-09-21 14:00:00', 26.97),
+(4, 4, '2023-09-22 20:15:00', 52.95),
+(5, 5, '2023-09-23 18:45:00', 27.96);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `tbl_customers`
+--
+ALTER TABLE `tbl_customers`
+  ADD PRIMARY KEY (`CustomerID`);
+
+--
+-- Indexes for table `tbl_detailedreservations`
+--
+ALTER TABLE `tbl_detailedreservations`
+  ADD PRIMARY KEY (`ReservationID`),
+  ADD KEY `CustomerID` (`CustomerID`);
+
+--
+-- Indexes for table `tbl_employees`
+--
+ALTER TABLE `tbl_employees`
+  ADD PRIMARY KEY (`EmployeeID`);
+
+--
+-- Indexes for table `tbl_feedback`
+--
+ALTER TABLE `tbl_feedback`
+  ADD PRIMARY KEY (`FeedbackID`),
+  ADD KEY `CustomerID` (`CustomerID`);
+
+--
+-- Indexes for table `tbl_menuitems`
+--
+ALTER TABLE `tbl_menuitems`
+  ADD PRIMARY KEY (`ItemID`);
+
+--
+-- Indexes for table `tbl_orderhistory`
+--
+ALTER TABLE `tbl_orderhistory`
+  ADD PRIMARY KEY (`OrderID`),
+  ADD KEY `CustomerID` (`CustomerID`);
+
+--
+-- Indexes for table `tbl_orderitems`
+--
+ALTER TABLE `tbl_orderitems`
+  ADD PRIMARY KEY (`OrderItemID`),
+  ADD KEY `OrderID` (`OrderID`),
+  ADD KEY `ItemID` (`ItemID`);
+
+--
+-- Indexes for table `tbl_orders`
+--
+ALTER TABLE `tbl_orders`
+  ADD PRIMARY KEY (`OrderID`),
+  ADD KEY `CustomerID` (`CustomerID`);
+
+--
+-- Indexes for table `tbl_paymenttransactions`
+--
+ALTER TABLE `tbl_paymenttransactions`
+  ADD PRIMARY KEY (`TransactionID`),
+  ADD KEY `OrderID` (`OrderID`);
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `tbl_detailedreservations`
+--
+ALTER TABLE `tbl_detailedreservations`
+  ADD CONSTRAINT `tbl_detailedreservations_ibfk_1` FOREIGN KEY (`CustomerID`) REFERENCES `tbl_customers` (`CustomerID`);
+
+--
+-- Constraints for table `tbl_feedback`
+--
+ALTER TABLE `tbl_feedback`
+  ADD CONSTRAINT `tbl_feedback_ibfk_1` FOREIGN KEY (`CustomerID`) REFERENCES `tbl_customers` (`CustomerID`);
+
+--
+-- Constraints for table `tbl_orderhistory`
+--
+ALTER TABLE `tbl_orderhistory`
+  ADD CONSTRAINT `tbl_orderhistory_ibfk_1` FOREIGN KEY (`CustomerID`) REFERENCES `tbl_customers` (`CustomerID`);
+
+--
+-- Constraints for table `tbl_orderitems`
+--
+ALTER TABLE `tbl_orderitems`
+  ADD CONSTRAINT `tbl_orderitems_ibfk_1` FOREIGN KEY (`OrderID`) REFERENCES `tbl_orders` (`OrderID`),
+  ADD CONSTRAINT `tbl_orderitems_ibfk_2` FOREIGN KEY (`ItemID`) REFERENCES `tbl_menuitems` (`ItemID`);
+
+--
+-- Constraints for table `tbl_orders`
+--
+ALTER TABLE `tbl_orders`
+  ADD CONSTRAINT `tbl_orders_ibfk_1` FOREIGN KEY (`CustomerID`) REFERENCES `tbl_customers` (`CustomerID`);
+
+--
+-- Constraints for table `tbl_paymenttransactions`
+--
+ALTER TABLE `tbl_paymenttransactions`
+  ADD CONSTRAINT `tbl_paymenttransactions_ibfk_1` FOREIGN KEY (`OrderID`) REFERENCES `tbl_orders` (`OrderID`);
